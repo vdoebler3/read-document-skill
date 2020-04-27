@@ -10,9 +10,9 @@ class ThemeSong(MycroftSkill):
         MycroftSkill.__init__(self)
 
     @intent_file_handler('song.theme.intent')
-    def handle_song_theme(self, message):
+    def handle_read_story(self, message):
         '''Snoopy answers and plays song'''
-        self.speak_dialog('song.theme')
+        self.speak_dialog('read.story')
         time.sleep(5)
         player.play()
 
