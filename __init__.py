@@ -8,18 +8,22 @@ class ReadStory(MycroftSkill):
     @intent_file_handler('story.read.intent')
     def handle_story_read(self, message):
         self.speak_dialog('story.read')
-        response = self.get_response('Tell the number of the story you want to hear 1 Snoopy at the dog show or 2 Rock a Bye Snoopy', num_retries=-1)
+        response = self.get_response('Tell me the story you want to hear Snoopy at the dog show, Rock a Bye Snoopy, or Snoopys  Baseball Game', num_retries=-1)
         time.sleep(5)
         self.speak(response)
 
         if 'rock' in response:
             filename = 'skills/read-story-skill/rock_a_bye_snoopy.txt'
-            self.speak('rock a bye')
+            self.speak('rock')
         elif 'show' in response:
             filename = 'skills/read-story-skill/dog_show.txt'
             self.speak('dog show')
+        elif 'baseball' in response:
+            filename = 'skills/read-story-skill/baseball_game.txt'
+            self.speak('Snoopys baseball game')
         else:
-            self.speak('You did not select a book number')
+            self.speak('You did not select a book so I will read you Snoopy at the dog show')
+            filename = 'skills/read-story-skill/dog_show.txt'
 
         with open(filename) as file_object:
             book = file_object.read()
